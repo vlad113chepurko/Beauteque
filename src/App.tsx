@@ -2,6 +2,7 @@ import React from 'react'
 import './SASS/App.css'
 import Header from './components/Header'
 import { motion } from "motion/react"
+import { useEffect, useState } from 'react'
 
 import banner from '../assets/banner.jpg'
 import banner1 from '../assets/banner1.jpg'
@@ -19,9 +20,17 @@ import tush from '../assets/tush.jpg'
 
 
 function App() {
+
+  const [itemCount, setItemCount] = useState(0)
+
+  useEffect(() => {
+    let width = window.innerWidth;
+    console.log(width);
+  }, [])
+
   return (
     <main>
-      <Header />
+      <Header  itemCount={itemCount}/>
     </main>
   )
 }

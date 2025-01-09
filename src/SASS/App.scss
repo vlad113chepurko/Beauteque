@@ -1,0 +1,17 @@
+@font-face {
+    font-family: 'Evolventa';
+    src: url('../assets/fonts/Evolventa-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import './tools/Colors.scss';
+@import './components/Header.scss';
+@import './components/Footer.scss';
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Evolventa';
+    box-sizing: border-box;
+}

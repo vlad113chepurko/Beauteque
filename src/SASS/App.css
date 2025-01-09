@@ -1,14 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&family=Kiwi+Maru&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 .header {
   width: 100%;
-  height: 80px;
+  height: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
   background-color: black;
   font-family: "Kiwi Maru", serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: lighter;
 }
 
@@ -28,7 +28,7 @@
   left: 50%;
   transform: translateX(-50%);
   top: 0;
-  height: 140px;
+  height: 100px;
   z-index: 1;
 }
 
@@ -39,9 +39,9 @@
   display: flex;
   align-items: center;
   width: 100%;
-  height: 90px;
+  height: 70px;
   font-family: "Kiwi Maru", serif;
-  font-size: 1.6rem;
+  font-size: 1.1rem;
   font-weight: 100;
   background-color: white;
 }
@@ -75,8 +75,8 @@
 }
 
 .under__header__button-menu img {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .under__header__button-search {
@@ -96,7 +96,7 @@
 
 .basket-count {
   position: absolute;
-  top: 25px;
+  top: 20px;
   right: -5px;
   background-color: #E97313;
   border-radius: 50%;
@@ -117,17 +117,54 @@
   height: auto;
 }
 
+.under__header__button-basket img {
+  width: 30px;
+  height: 30px;
+}
+
+.under__header__button-search img {
+  width: 30px;
+  height: 30px;
+}
+
 .under__header input {
   width: 300px;
   height: 50px;
-  opacity: 0;
   position: absolute;
-  right: 190px;
+  right: 160px;
   z-index: 1000;
   font-size: large;
   border: 1px solid #E97313;
   outline: none;
   padding-left: 10px;
+}
+
+.under__header__button-menu-open {
+  width: auto;
+  height: auto;
+  padding: 10px;
+  border: 1px solid #E97313;
+  border-radius: 5px;
+  background-color: white;
+  left: 40px;
+  top: 100px;
+  position: absolute;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.list-container {
+  width: 100%;
+  padding: 10px;
+  height: 50px;
+  margin: 10px;
+  list-style: none;
+  border: 1px solid #E97313;
 }
 
 .vline {
@@ -140,6 +177,10 @@
 @media screen and (max-width: 1250px) {
   .header {
     height: 50px;
+  }
+  .under__header input {
+    right: 125px;
+    width: 290px;
   }
   .header a {
     font-size: 0.8rem;
@@ -159,7 +200,7 @@
     height: 65px;
   }
   .under__header a {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
   }
   .under__header__button-menu img {
     width: 24px;
@@ -193,7 +234,7 @@
     padding-right: 0;
   }
   .under__header input {
-    left: 20px;
+    left: 40px;
     width: 50%;
     height: 50px;
   }
@@ -209,19 +250,30 @@
   .basket-count {
     top: 20px;
   }
-  .under__header__button-basket img {
-    width: 30px;
-    height: 30px;
-  }
   .under__header__button-search {
     margin-left: 0;
   }
   .under__header a {
     font-size: 0.85rem;
   }
-  .under__header__button-search img {
-    width: 30px;
-    height: 30px;
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  li {
+    margin: 10;
+    width: 300px;
+  }
+  .under__header__button-menu-open {
+    width: 100%;
+    height: auto;
+    border: 1px solid #E97313;
+    opacity: 0;
+    background-color: white;
+    left: 0;
+    top: 270px;
+    position: absolute;
   }
 }
 * {

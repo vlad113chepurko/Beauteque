@@ -12,8 +12,10 @@ interface HeaderProps {
 }
 
 export default function Header({ itemCount }: HeaderProps) {
+
     const [width, setWidth] = useState(window.innerWidth);
-    const [isInputVisible, setIsInputVisible] = useState(true);
+    const [isInputVisible, setIsInputVisible] = useState(false);
+    const [isMenuVisible, setIsMenuVisible] = useState(false);
 
     useEffect(() => {
         const handleResize = () => {
@@ -26,6 +28,7 @@ export default function Header({ itemCount }: HeaderProps) {
             window.removeEventListener('resize', handleResize);
         }
     }, [])
+
 
     return (
         <>
@@ -66,9 +69,16 @@ export default function Header({ itemCount }: HeaderProps) {
 
             {width > 500 ? (
                 <header className='under__header'>
-                    <button className='under__header__button-menu'>
+                    <button
+                        onClick={() => {
+                            setIsMenuVisible(!isMenuVisible);
+                            if (isInputVisible) setIsInputVisible(false)
+                        }}
+                        className='under__header__button-menu'>
                         <img src={Menu} alt="menu" />
                     </button>
+
+                    {isMenuVisible && (<MenuList />)}
 
                     <section>
                         <a href="#">Brand</a>
@@ -78,14 +88,14 @@ export default function Header({ itemCount }: HeaderProps) {
 
                     <section className='under__header-flex-end'>
                         <a href="#">Login/Sign Up</a>
-                        <motion.input
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                            type="text"
-                            hidden={isInputVisible}
-                            placeholder='What do you search?' />
+
+                        {isInputVisible && (<SearchInput />)}
+
                         <button className='under__header__button-search'
-                            onClick={() => setIsInputVisible(!isInputVisible)}>
+                            onClick={() => {
+                                setIsInputVisible(!isInputVisible);
+                                if (isMenuVisible) setIsMenuVisible(false); 
+                            }}>
                             <img src={Search} alt="" />
                         </button>
                         <button className='under__header__button-basket'>
@@ -93,26 +103,31 @@ export default function Header({ itemCount }: HeaderProps) {
                             <span className='basket-count'>{itemCount}</span>
                         </button>
                     </section>
-                </header>
+                </header >
             ) : (
                 <header className='under__header'>
 
                     <section className='under__header-container'>
-                        <button className='under__header__button-menu'>
+                        <button
+                            className='under__header__button-menu'
+                            onClick={() => {
+                                setIsMenuVisible(!isMenuVisible);
+                                if (isInputVisible) setIsInputVisible(false)}}>
                             <img src={Menu} alt="menu" />
                         </button>
+
+                        {isMenuVisible && (<MenuList />)}
+
                         <a href="#">Login/Sign Up</a>
                         <span className='vline'></span>
 
-                        <motion.input
-                            whileInView={{ opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                            type="text"
-                            hidden={isInputVisible}
-                            placeholder='What do you search?' />
+                        {isInputVisible && (<SearchInput />)}
 
                         <button className='under__header__button-search'
-                            onClick={() => setIsInputVisible(!isInputVisible)}>
+                            onClick={() => {
+                                setIsInputVisible(!isInputVisible);
+                                if (isMenuVisible) setIsMenuVisible(false); 
+                            }}>
                             <img src={Search} alt="" />
                         </button>
                         <span className='vline'></span>
@@ -122,7 +137,40 @@ export default function Header({ itemCount }: HeaderProps) {
                         </button>
                     </section>
                 </header>
-            )}
+            )
+            }
         </>
     )
+
+    function MenuList() {
+        return (
+            isMenuVisible && (
+                <motion.section
+                    initial={{ opacity: 0, x: -100 }}
+                    animate={{ opacity: isMenuVisible ? 1 : 0, x: isMenuVisible ? 0 : -100 }}
+                    transition={{ duration: 0.5, ease: "easeInOut" }}
+                    className='under__header__button-menu-open'>
+                    <nav>
+                        <li className='list-container'><a href="#">Facial cosmetics</a></li>
+                        <li className='list-container'><a href="#">Eye cosmetics</a></li>
+                        <li className='list-container'><a href="#">Lip cosmetics</a></li>
+                        <li className='list-container'><a href="#">Skin care product</a></li>
+                        <li className='list-container'><a href="#">Perfumery</a></li>
+                    </nav>
+                </motion.section>
+            )
+        );
+    }
+
+    function SearchInput() {
+        return (
+            <motion.input
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: isInputVisible ? 1 : 0, x: isInputVisible ? 0 : 100 }}
+                type="text"
+                placeholder='What do you search?'
+            />
+        );
+    }
+
 }

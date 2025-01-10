@@ -41,7 +41,7 @@
 
 .under__header {
     overflow: hidden;
-    border: 1px solid $orange;
+    border: 3px solid $orange;
     padding-right: 30px;
     display: flex;
     align-items: center;
@@ -140,14 +140,14 @@
 }
 
 .under__header input {
-    width: 300px;
+    width: 200px;
     height: 50px;
+
+    font-size: medium;
 
     position: absolute;
     right: 160px;
     z-index: 1000;
-
-    font-size: large;
 
     border: 1px solid $orange;
 
@@ -161,12 +161,14 @@
     height: auto;
 
     padding: 10px;
+    
 
     border: 1px solid $orange;
     border-radius: 5px;
 
     background-color: white;
 
+    z-index: 1000;
     left: 40px;
     top: 100px;
     position: absolute;

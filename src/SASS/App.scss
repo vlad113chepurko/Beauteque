@@ -7,6 +7,7 @@
 
 @import './tools/Colors.scss';
 @import './components/Header.scss';
+@import './components/Main.scss';
 @import './components/Footer.scss';
 
 * {
@@ -14,4 +15,12 @@
     padding: 0;
     font-family: 'Evolventa';
     box-sizing: border-box;
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.margin-right {
+    margin-right: 10px;
 }

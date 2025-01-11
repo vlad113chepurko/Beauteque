@@ -41,7 +41,7 @@
 
 .under__header {
     overflow: hidden;
-    border: 3px solid $orange;
+    border: 1px solid $orange;
     padding-right: 30px;
     display: flex;
     align-items: center;
@@ -110,8 +110,7 @@
     right: -5px;
     background-color: $orange;
     border-radius: 50%;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 10px;
 
     display: flex;
     justify-content: center;
@@ -271,7 +270,7 @@ nav {
     }
 
     .under__header input {
-        left: 40px;
+        left: 20px;
         width: 50%;
         height: 50px;
     }

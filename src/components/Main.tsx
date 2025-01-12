@@ -3,22 +3,37 @@ import arrowr from '../assets/ArrowR.svg';
 import banner1 from '../assets/banner1.jpg';
 import banner2 from '../assets/banner2.jpg';
 
+import balsam from '../assets/balsam.png'
+import gift from '../assets/gift.png'
+import parfume from '../assets/parfume.png'
+import sivorotka from '../assets/sivorotka.png'
+import tush from '../assets/tush.png'
+
 import girl_face from '../assets/girl-face.jpg'
 import girl_lips from '../assets/girl-lips.jpg'
 import girl_parfume from '../assets/girl-parfume.jpg'
 import girl_acsesuars from '../assets/acsesuars.jpg'
 
-
+import { nanoid } from 'nanoid';
 import { motion } from "motion/react"
 import { useState, useEffect } from 'react';
 
 
 
-export default function Main() {
+export default function Main({ itemCount, setItemCount }: any) {
     const [currentBanner, setCurrentBanner] = useState(banner1);
     const [banners] = useState([banner1, banner2]);
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [itemAddedContainer, setItemAddedContainer] = useState(false);
+    const [items] = useState([
+        { name: 'Balsam Lip Glow', src: balsam, price: `3$`, id: nanoid() },
+        { name: 'Gift Set Victoria Secret', src: gift, price: `20$`, id: nanoid() },
+        { name: 'Parfume Sur La Lande', src: parfume, price: `10$`, id: nanoid() },
+        { name: 'Hair oil MinoX', src: sivorotka, price: `20$`, id: nanoid() },
+        { name: 'Mascara Victoria Secret', src: tush, price: `5$`, id: nanoid() }
+    ]);
     const [title, setTitle] = useState('Hit of the month!');
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -55,6 +70,11 @@ export default function Main() {
             default:
                 break;
         }
+    }
+
+    function handleItemAdd() {
+        setItemCount(itemCount + 1)
+        setItemAddedContainer(true)
     }
 
     function onClickArrowRight() {
@@ -136,15 +156,13 @@ export default function Main() {
 
                 <div className='container-categories'>
 
-                    <section className='container-vertical-text'>
-                        <h1 className='vertical-text'>COSMETICS AND PARFUMES</h1>
-                    </section>
+                    <h1 className='vertical-text'>COSMETICS AND PARFUMES</h1>
 
                     <section className='container-categories__products '>
                         <motion.i className='products-container'
                             initial={{ x: -200, }}
                             whileInView={{ x: 0 }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}>
+                            transition={{ duration: 1, ease: "easeInOut" }}>
                             <span className='inside-container' >
                                 <h1 className='inside-container__title '>Parfumes</h1>
                             </span>
@@ -154,7 +172,7 @@ export default function Main() {
                         <motion.i
                             initial={{ y: 200 }}
                             whileInView={{ y: 0 }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            transition={{ duration: 1, ease: "easeInOut" }}
                             className='products-container'>
                             <span className='inside-container'>
                                 <h1 className='inside-container__title '>Face</h1>
@@ -165,7 +183,7 @@ export default function Main() {
                         <motion.i className='products-container'
                             initial={{ x: 200, }}
                             whileInView={{ x: 0 }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}>
+                            transition={{ duration: 1, ease: "easeInOut" }}>
                             <span className='inside-container'>
                                 <h1 className='inside-container__title '>Lips</h1>
                             </span>
@@ -173,9 +191,31 @@ export default function Main() {
                                 alt="girl_lips" />
                         </motion.i>
                         <motion.i
+                            initial={{ x: -200 }}
+                            whileInView={{ x: 0 }}
+                            transition={{ duration: 1, ease: "easeInOut" }}
+                            className='products-container'>
+                            <span className='inside-container'>
+                                <h1 className='inside-container__title '>Acsesuars</h1>
+                            </span>
+                            <img src={girl_acsesuars}
+                                alt="girl_acsesuars" />
+                        </motion.i>
+                        <motion.i
                             initial={{ y: 200 }}
                             whileInView={{ y: 0 }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            transition={{ duration: 1, ease: "easeInOut" }}
+                            className='products-container'>
+                            <span className='inside-container'>
+                                <h1 className='inside-container__title '>Acsesuars</h1>
+                            </span>
+                            <img src={girl_acsesuars}
+                                alt="girl_acsesuars" />
+                        </motion.i>
+                        <motion.i
+                            initial={{ x: 200 }}
+                            whileInView={{ x: 0 }}
+                            transition={{ duration: 1, ease: "easeInOut" }}
                             className='products-container'>
                             <span className='inside-container'>
                                 <h1 className='inside-container__title '>Acsesuars</h1>
@@ -184,6 +224,38 @@ export default function Main() {
                                 alt="girl_acsesuars" />
                         </motion.i>
                     </section>
+                </div>
+
+                <div className='items-container'>
+                    <h1 className='items-container__title'>New Items</h1>
+                    <span className='items-container__line'></span>
+                    <section className='items-container__products'>
+                        <section className='items-wrapper'>
+                            {items.map((item) =>
+                                <i key={item.id} className='items-container__product__container'>
+                                    <img className='item' src={item.src} alt={`Item: ${item}`} />
+                                    <h1 className='margin-bottom '>{`${item.name || `Unknown`} `}</h1>
+                                    <h2 className='margin-bottom '>{`${item.price || `ERROR`} `}</h2>
+                                    <button
+                                        key={item.id}
+                                        className='items-container__button'
+                                        onClick={handleItemAdd}
+                                    >Add To Basket</button>
+                                </i>
+                            )}
+                        </section>
+                    </section>
+                    {itemAddedContainer ? (
+                        <motion.div
+                            initial={{ x: 1000 }}
+                            animate={{ x: 0 }}
+                            transition={{ duration: 0.5, ease: 'easeInOut' }}
+                            className='item-added'>{`Item was added in basket!`}
+                            <p
+                                onClick={() => { setItemAddedContainer(false) }}
+                                className='item-added__close '>X</p>
+                        </motion.div>
+                    ) : null}
                 </div>
             </main >
         </>

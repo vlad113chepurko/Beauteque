@@ -1,21 +1,15 @@
-import React from 'react'
 import './SASS/App.css'
 import Header from './components/Header'
 import Main from './components/Main'
+import Footer from './components/Footer'
 import { useEffect, useState } from 'react'
 
-import balsam from '../assets/balsam.jpg'
-import gift from '../assets/gift.jpg'
-import parfume from '../assets/parfume.jpg'
-import parfume2 from '../assets/parfume2.jpg'
-import pudra from '../assets/pudra.jpg'
-import sivorotka from '../assets/sivorotka.jpg'
-import tush from '../assets/tush.jpg'
+
 
 
 function App() {
 
-  const [itemCount, _] = useState(0)
+  const [itemCount, setItemCount] = useState(0)
 
   useEffect(() => {
     let width = window.innerWidth;
@@ -25,7 +19,8 @@ function App() {
   return (
     <main>
       <Header  itemCount={itemCount}/>
-      <Main />
+      <Main itemCount={itemCount} setItemCount={setItemCount}/>
+      <Footer />
     </main>
   )
 }
